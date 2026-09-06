@@ -1,39 +1,9 @@
 import { Component } from '@angular/core';
-import { 
-  ButtonGroupData, 
-  ButtonGroupMolecule, 
-  ContainerAtom, 
-  NavLink, 
-  NavLinkMolecule 
-} from '@brejcha13320/design-system-bootstrap';
+import { AlertCardComponent, StudentAlert } from '@brejcha13320/design-system-bootstrap';
 
-@Component({
-  templateUrl: './molecules.html',
-  imports: [
-    ContainerAtom,
-    ButtonGroupMolecule,
-    NavLinkMolecule,
-  ],
-})
+@Component({ templateUrl: './molecules.html', imports: [AlertCardComponent] })
 export class Molecules {
-  buttonsGroupData: ButtonGroupData[] = [
-    { idButton: 'idButtonPrimary', type: 'primary', text: 'Text Primary' },
-    { idButton: 'idButtonSecondary', type: 'secondary', text: 'Text Secondary' },
-    { idButton: 'idButtonSuccess', type: 'success', text: 'Text Success' },
-    { idButton: 'idButtonDanger', type: 'danger', text: 'Text Danger' },
-    { idButton: 'idButtonWarning', type: 'warning', text: 'Text Warning' },
-    { idButton: 'idButtonInfo', type: 'info', text: 'Text Info' },
-    { idButton: 'idButtonLight', type: 'light', text: 'Text Light' },
-    { idButton: 'idButtonDark', type: 'dark', text: 'Text Dark' },
-  ];
-
-  navLinks: NavLink[] = [
-    { text: 'Link 1', url: '/atoms' },
-    { text: 'Link 2', url: '/molecules' },
-    { text: 'Link 3', url: '/organisms' },
-  ];
-
-  onClick(idButton: string){
-    alert(`Click en el Boton de Grupo ${idButton}`);
-  }
+  readonly exampleAlert: StudentAlert = { id: 'alert-001', student: { id: 'student-001', fullName: 'Laura Rojas', program: 'Ingeniería de Sistemas' }, riskLevel: 'high', createdAt: '2026-09-01T00:00:00.000Z', reason: 'Registra tres ausencias consecutivas en la última semana.' };
+  selectedStudent = '';
+  onReview(alert: StudentAlert): void { this.selectedStudent = `Solicitud de revisión registrada para ${alert.student.fullName}.`; }
 }

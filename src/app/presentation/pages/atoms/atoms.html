@@ -1,28 +1,8 @@
-<dsb-container-atom title="Icon" >
-    <section class="d-flex gap-5" >
-        @for(icon of icons; track icon){
-            <dsb-icon-atom [icon]="icon.name" [size]="icon.size"></dsb-icon-atom>
-        }
-    </section>
-</dsb-container-atom>
-
-<dsb-container-atom title="Badge" >
-    <section class="d-flex gap-2" >
-        @for(badge of badges; track badge){
-            <dsb-badge-atom [text]="badge.type | titlecase" [type]="badge.type" [typeText]="badge.typeText" ></dsb-badge-atom>
-        }
-    </section>
-</dsb-container-atom>
-
-<dsb-container-atom title="Button" >
-    <section class="d-flex gap-2" >
-        @for(button of buttons; track button){
-            <dsb-button-atom 
-                [idButton]="button.idButton" 
-                [text]="button.type | titlecase" 
-                [type]="button.type" 
-                (clicker)="onClick($event)" >
-            </dsb-button-atom>
-        }
-    </section>
-</dsb-container-atom>
+<main class="showcase">
+  <p class="eyebrow">EduAlert · Átomos</p><h1>Risk badge</h1>
+  <p>Indica de forma accesible y consistente el nivel de riesgo de cada estudiante.</p>
+  <section class="examples" aria-label="Ejemplos de niveles de riesgo">
+    @for (level of riskLevels; track level) { <dsb-risk-badge [riskLevel]="level" /> }
+  </section>
+  <p class="note">Pendiente de Persona B: <code>ActionButtonComponent</code> con variantes reutilizables.</p>
+</main>

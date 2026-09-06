@@ -1,11 +1,6 @@
-<dsb-container-atom title="Button Group" >
-    <dsb-button-group-molecule 
-        [buttonsGroupData]="buttonsGroupData" 
-        (clicker)="onClick($event)" >
-    </dsb-button-group-molecule>
-</dsb-container-atom>
-
-<dsb-container-atom title="Nav Link" >
-    <dsb-nav-link-molecule [navLinks]="navLinks">
-    </dsb-nav-link-molecule>
-</dsb-container-atom>
+<main class="showcase"><p class="eyebrow">EduAlert · Moléculas</p><h1>Alert card</h1>
+  <p>Combina la información del estudiante, su señal de alerta y el nivel de riesgo.</p>
+  <dsb-alert-card [alert]="exampleAlert" (reviewRequested)="onReview($event)" />
+  @if (selectedStudent) { <p class="feedback" role="status">{{ selectedStudent }}</p> }
+  <p class="note">Pendiente de Persona B: <code>StudentFormFieldComponent</code>.</p>
+</main>

@@ -1,3 +1,4 @@
-<dsb-container-atom title="Navbar" >
-    <dsb-navbar-organism [navbarConfig]="navbarConfig"></dsb-navbar-organism>
-</dsb-container-atom>
+<main class="showcase"><p class="eyebrow">EduAlert · Organismos</p><h1>Dashboard de alertas</h1>
+  <dsb-alerts-dashboard [alerts]="alerts" (reviewRequested)="onReview($event)" />
+  @if (reviewedAlert) { <p class="feedback" role="status">{{ reviewedAlert }}</p> }
+</main>
