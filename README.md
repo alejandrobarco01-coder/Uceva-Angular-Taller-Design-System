@@ -1,5 +1,26 @@
 # 🧪 Taller: Sistema de Diseño Átomico en Angular
 
+## EduAlert: arquitectura del taller
+
+La librería contiene componentes standalone organizados según Atomic Design y el
+showcase los presenta en las rutas `/atoms`, `/molecules` y `/organisms`.
+
+```
+core/models/edu-alert.models.ts     contratos tipados del dominio
+atoms/risk-badge                    nivel de riesgo: bajo, medio o alto
+molecules/alert-card                estudiante + riesgo + acción de revisión
+organisms/alerts-dashboard          listado filtrable de alertas
+```
+
+`RiskBadgeComponent`, `AlertCardComponent` y `AlertsDashboardComponent` se
+exportan desde la API pública de la librería. Los contratos `FormFieldConfig` y
+los TODOs marcan la integración pendiente de la Persona B (`ActionButtonComponent`
+y `StudentFormFieldComponent`).
+
+Para compilar todo el proyecto, primero ejecute `npm run build` (librería) y
+luego `npx ng build Angular-Standalone-Template --configuration development`
+(showcase). Sus archivos se generan en directorios distintos dentro de `dist/`.
+
 - Este proyecto fue generado utilizando [Angular CLI](https://github.com/angular/angular-cli) 20.3.14.
 
 - El objetivo del taller es practicar la creación de un sistema de diseño átomico y librerias en Angular, mediante el uso de componentes standalone.
