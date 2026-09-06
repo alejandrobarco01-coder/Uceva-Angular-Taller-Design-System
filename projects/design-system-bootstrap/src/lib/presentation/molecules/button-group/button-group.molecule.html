@@ -1,5 +1,0 @@
-<div class="btn-group" role="group" aria-label="Basic example">
-    @for(button of buttonsGroupData; track button){
-        <button [id]="button.idButton" type="button" class="btn" [class]="getClass(button.type)" (click)="onEmit(button.idButton)">{{ button.text }}</button>
-    }
-</div>

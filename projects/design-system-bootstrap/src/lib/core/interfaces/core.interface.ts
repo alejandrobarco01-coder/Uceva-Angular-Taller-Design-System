@@ -11,29 +11,6 @@ export type Themes =
     | 'light'
     | 'dark';
 
-/** Tipo de tema para badges */
-export type BadgeType = Themes;
-
-/** Clases de texto disponibles para badges */
-export type BadgeTypeText = 'text-white' | 'text-dark';
-
-/** Tipo de tema para botones */
-export type ButtonType = Themes;
-
-/**
- * Configuración de un botón dentro de un grupo de botones.
- */
-export interface ButtonGroupData {
-  /** Identificador único del botón */
-  idButton: string;
-
-  /** Tipo visual del botón */
-  type: ButtonType;
-
-  /** Texto visible del botón */
-  text: string;
-}
-
 /**
  * Representa un enlace de navegación.
  */
