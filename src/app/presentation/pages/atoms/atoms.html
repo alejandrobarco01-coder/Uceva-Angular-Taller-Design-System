@@ -1,8 +1,23 @@
 <main class="showcase">
-  <p class="eyebrow">EduAlert · Átomos</p><h1>Risk badge</h1>
+  <p class="eyebrow">EduAlert · Átomos</p>
+  <h1>Risk badge</h1>
   <p>Indica de forma accesible y consistente el nivel de riesgo de cada estudiante.</p>
   <section class="examples" aria-label="Ejemplos de niveles de riesgo">
-    @for (level of riskLevels; track level) { <dsb-risk-badge [riskLevel]="level" /> }
+    @for (level of riskLevels; track level) {
+      <dsb-risk-badge [riskLevel]="level" />
+    }
   </section>
-  <p class="note">Pendiente de Persona B: <code>ActionButtonComponent</code> con variantes reutilizables.</p>
+
+  <h2 style="font-size: 1.5rem; margin-top: 2rem; margin-bottom: 0.5rem;">Action button</h2>
+  <p>Botones de acción consistentes con soporte para variantes semánticas y estados interactivos.</p>
+  <section class="examples" aria-label="Ejemplos de botones de acción">
+    <dsb-action-button label="Primario" variant="primary" (actionClick)="onButtonClick('Primario')" />
+    <dsb-action-button label="Secundario" variant="secondary" (actionClick)="onButtonClick('Secundario')" />
+    <dsb-action-button label="Peligro" variant="danger" (actionClick)="onButtonClick('Peligro')" />
+    <dsb-action-button label="Deshabilitado" variant="primary" [disabled]="true" />
+  </section>
+
+  @if (lastButtonClicked) {
+    <p class="feedback" role="status">{{ lastButtonClicked }}</p>
+  }
 </main>

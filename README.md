@@ -1,135 +1,136 @@
-# 🧪 Taller: Sistema de Diseño Átomico en Angular
+# 🧪 Taller: Sistema de Diseño Atómico en Angular
 
 ## EduAlert: arquitectura del taller
 
-La librería contiene componentes standalone organizados según Atomic Design y el
-showcase los presenta en las rutas `/atoms`, `/molecules` y `/organisms`.
+La librería `@brejcha13320/design-system-bootstrap` contiene componentes standalone organizados rigurosamente bajo la metodología **Atomic Design**, y el proyecto de demostración los presenta en las rutas `/atoms`, `/molecules` y `/organisms`.
 
 ```
-core/models/edu-alert.models.ts     contratos tipados del dominio
-atoms/risk-badge                    nivel de riesgo: bajo, medio o alto
-molecules/alert-card                estudiante + riesgo + acción de revisión
-organisms/alerts-dashboard          listado filtrable de alertas
+projects/design-system-bootstrap/src/lib/
+├── core/
+│   ├── interfaces/core.interface.ts     contratos de navegación e iconos
+│   └── models/edu-alert.models.ts       contratos de dominio (Student, StudentAlert, FormFieldConfig, etc.)
+├── presentation/
+│   ├── atoms/
+│   │   ├── icon/                        IconAtom: renderizado de iconos tipados
+│   │   ├── risk-badge/                  RiskBadgeComponent: nivel de riesgo (bajo, medio, alto)
+│   │   └── action-button/               ActionButtonComponent: botón reutilizable con variantes y estados
+│   ├── molecules/
+│   │   ├── nav-link/                    NavLinkMolecule: enlaces de navegación
+│   │   ├── alert-card/                  AlertCardComponent: tarjeta de estudiante + riesgo + acción
+│   │   └── student-form-field/          StudentFormFieldComponent: campo de formulario con validación requerida
+│   └── organisms/
+│       ├── navbar/                      NavbarOrganism: barra de navegación principal
+│       └── alerts-dashboard/            AlertsDashboardComponent: listado y filtrado reactivo de alertas
+└── public-api.ts                        superficie pública exportada de la librería
 ```
 
-`RiskBadgeComponent`, `AlertCardComponent` y `AlertsDashboardComponent` se
-exportan desde la API pública de la librería. Los contratos `FormFieldConfig` y
-los TODOs marcan la integración pendiente de la Persona B (`ActionButtonComponent`
-y `StudentFormFieldComponent`).
+Todos los componentes (`RiskBadgeComponent`, `ActionButtonComponent`, `AlertCardComponent`, `StudentFormFieldComponent`, `AlertsDashboardComponent`, `IconAtom`, `NavLinkMolecule` y `NavbarOrganism`) son standalone, usan tipado estricto con TypeScript y se exportan desde la API pública de la librería.
 
-Para compilar todo el proyecto, primero ejecute `npm run build` (librería) y
-luego `npx ng build Angular-Standalone-Template --configuration development`
-(showcase). Sus archivos se generan en directorios distintos dentro de `dist/`.
-
-- Este proyecto fue generado utilizando [Angular CLI](https://github.com/angular/angular-cli) 20.3.14.
-
-- El objetivo del taller es practicar la creación de un sistema de diseño átomico y librerias en Angular, mediante el uso de componentes standalone.
+---
 
 ## 📋 Requisitos Previos
 
 Antes de iniciar, asegúrate de tener instaladas las siguientes herramientas:
 
-- Node.js
+- Node.js (v18+)
 - npm
 - Angular CLI
 - Git
-- Visual Studio Code
 
-Puedes verificar Angular CLI en consola con: ```ng version```
+Puedes verificar Angular CLI en consola con: `ng version`
+
+---
 
 ## ▶️ Iniciar el Proyecto en Modo Desarrollo
 
-Sigue estos pasos para ejecutar el proyecto localmente:
+Sigue estos pasos para compilar y ejecutar el proyecto localmente:
 
-### 1️⃣ Abrir la consola
+### 1️⃣ Instalar dependencias
 
-Ubícate en la raíz del proyecto (donde se encuentra el archivo package.json).
+```bash
+npm i
+```
 
-### 2️⃣ Instalar dependencias
+### 2️⃣ Compilar la librería de componentes
 
-```npm i```
+```bash
+npm run build
+```
 
-### 3️⃣ Ejecutar el proyecto
+O en modo observación contínua:
 
-Para ejecutar el proyecto debemos generar un compilado del projects para consumirlo desde el app
-y ejecutar un proyecto de prueba consumiendo la libreria ubicada en projects
+```bash
+npm run build:dev
+```
 
-```npm run build:dev``` y ```npm run start``` o ```ng serve```
+### 3️⃣ Iniciar el showcase
+
+```bash
+npm run start
+```
+
+O directamente: `ng serve`
 
 ### 4️⃣ Abrir en el navegador
 
-Cuando el servidor esté en ejecución, abre un navegador y accede a: `http://localhost:4200/`
+Accede a: `http://localhost:4200/`
 
-## 🧪 Pruebas Unitarias
+- `/atoms`: Ejemplos interactivos de `RiskBadgeComponent` y `ActionButtonComponent` (variantes `primary`, `secondary`, `danger`, `disabled`).
+- `/molecules`: Ejemplos interactivos de `AlertCardComponent` y `StudentFormFieldComponent` (validación en tiempo real y mensaje de error).
+- `/organisms`: Ejemplo interactivo de `AlertsDashboardComponent` (filtrado por riesgo y captura de eventos).
 
-El proyecto utiliza Jest para la ejecución de pruebas unitarias.
+---
 
-### ▶️ Ejecutar pruebas una sola vez
+## 🧪 Pruebas Unitarias y Cobertura (Jest)
 
-```npm run test```
+El proyecto utiliza Jest configurado para Angular con cobertura completa (100%).
+
+### ▶️ Ejecutar pruebas unitarias
+
+```bash
+npm test -- --runInBand
+```
 
 ### 🔁 Ejecutar pruebas en modo watch
 
-Este modo vuelve a ejecutar las pruebas cada vez que se detecta un cambio en el código.
-
-```npm run test:watch```
-
-### 🔁 Ejecutar coverage de pruebas
-
-Este modo permite ejecutar todas las pruebas unitarias del proyecto y generar un reporte de cobertura, el cual muestra qué porcentaje del código fuente está siendo validado por las pruebas.
-
-```npm run test:coverage```
-
-### 📘 Generar documentación con Compodoc
-
-Este modo permite generar la documentación técnica del proyecto a partir de los comentarios JSDoc en el código fuente, facilitando la visualización de la API del Design System y sus componentes.
-
-El comando genera un sitio estático con la documentación del proyecto, incluyendo componentes, interfaces, tipos, módulos y diagramas de dependencias.
-
-```npm run compodoc```
-
-## ⚙️ Generación de Archivos con Angular CLI
-
-A continuación se presentan los comandos más utilizados para generar componentes standalone.
-
-### 🧩 Generar un componente (con carpeta propia)
-
-```ng g c [ruta]/[nombre-componente]```
-
-#### Ejemplo:
-
-```ng g c atoms/button```
-
-#### Archivos Generados
-
-```
-src/app/atoms/button/
-├── button.html
-├── button.scss
-├── button.spec.ts
-└── button.ts
+```bash
+npm run test:watch
 ```
 
-### 📄 Generar un componente sin carpeta (--flat)
+### 📊 Generar reporte de cobertura
 
-```ng g c [ruta]/[nombre-componente] --flat```
-
-#### Ejemplo:
-
-```ng g c atoms/button/button.atom --flat```
-
-#### Archivos Generados
-
-```
-src/app/atoms/button/
-├──button.atom.html
-├──button.atom.scss
-├──button.atom.spec.ts
-└──button.atom.ts
+```bash
+npm run test:coverage
 ```
 
-### 🎓 Observaciones Importantes
+---
 
-- En este taller se utilizan componentes standalone
-- Mantener una estructura clara favorece la escalabilidad y mantenibilidad
-- Revisar cobertura de pruebas unitarias y documentación
+## 📘 Documentación Técnica con Compodoc
+
+Genera la documentación estática a partir de los comentarios JSDoc tipados:
+
+```bash
+npm run compodoc
+```
+
+Para verificar la cobertura de la documentación técnica:
+
+```bash
+npx compodoc -p tsconfig.doc.json --coverageTest
+```
+
+---
+
+## 🏗️ Compilación de Producción y Desarrollo
+
+Para compilar tanto la librería como la aplicación del showcase:
+
+```bash
+# 1. Compilar librería
+npm run build
+
+# 2. Compilar aplicación showcase
+npx ng build Angular-Standalone-Template --configuration development
+```
+
+Los artefactos se generan en `dist/design-system-bootstrap` y `dist/showcase`.

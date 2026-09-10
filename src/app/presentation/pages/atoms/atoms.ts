@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
-import { RiskBadgeComponent, RiskLevel } from '@brejcha13320/design-system-bootstrap';
+import { ActionButtonComponent, RiskBadgeComponent, RiskLevel } from '@brejcha13320/design-system-bootstrap';
 
 @Component({
   templateUrl: './atoms.html',
-  imports: [RiskBadgeComponent],
+  imports: [RiskBadgeComponent, ActionButtonComponent],
 })
 export class Atoms {
   readonly riskLevels: readonly RiskLevel[] = ['low', 'medium', 'high'];
+  lastButtonClicked = '';
+
+  onButtonClick(label: string): void {
+    this.lastButtonClicked = `Botón accionado: ${label}`;
+  }
 }

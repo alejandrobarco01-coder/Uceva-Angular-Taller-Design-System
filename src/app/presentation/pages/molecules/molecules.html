@@ -1,6 +1,23 @@
-<main class="showcase"><p class="eyebrow">EduAlert · Moléculas</p><h1>Alert card</h1>
-  <p>Combina la información del estudiante, su señal de alerta y el nivel de riesgo.</p>
+<main class="showcase">
+  <p class="eyebrow">EduAlert · Moléculas</p>
+  <h1>Alert card</h1>
+  <p>Combina la información del estudiante, su señal de alerta y el nivel de riesgo con acción interactiva.</p>
   <dsb-alert-card [alert]="exampleAlert" (reviewRequested)="onReview($event)" />
-  @if (selectedStudent) { <p class="feedback" role="status">{{ selectedStudent }}</p> }
-  <p class="note">Pendiente de Persona B: <code>StudentFormFieldComponent</code>.</p>
+  @if (selectedStudent) {
+    <p class="feedback" role="status">{{ selectedStudent }}</p>
+  }
+
+  <h2 style="font-size: 1.5rem; margin-top: 2rem; margin-bottom: 0.5rem;">Student form field</h2>
+  <p>Campo de entrada accesible con soporte para validación requerida, mensajes de error y estados interactivos.</p>
+  <div style="max-width: 480px; margin-top: 1rem;">
+    <dsb-student-form-field
+      [config]="studentNameConfig"
+      [value]="formFieldValue"
+      (valueChange)="onFieldValueChange($event)"
+      (statusChange)="onFieldStatusChange($event)"
+    />
+    @if (formFieldStatus) {
+      <p class="feedback" role="status">{{ formFieldStatus }}</p>
+    }
+  </div>
 </main>
