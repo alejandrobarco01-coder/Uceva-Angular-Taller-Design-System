@@ -9,6 +9,7 @@ export * from './lib/core/models/edu-alert.models';
 //Atoms
 export { IconAtom } from './lib/presentation/atoms/icon/icon.atom';
 export { RiskBadgeComponent } from './lib/presentation/atoms/risk-badge/risk-badge.atom';
+export { ActionButtonComponent } from './lib/presentation/atoms/action-button/action-button.atom';
 
 //Molecules
 export { NavLinkMolecule } from './lib/presentation/molecules/nav-link/nav-link.molecule';

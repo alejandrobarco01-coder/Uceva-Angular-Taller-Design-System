@@ -1,17 +1,16 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { StudentAlert } from '../../../core/models/edu-alert.models';
+import { ActionButtonComponent } from '../../atoms/action-button/action-button.atom';
 import { RiskBadgeComponent } from '../../atoms/risk-badge/risk-badge.atom';
 
 /**
  * Tarjeta que agrupa la información de una alerta y expone una acción contextual.
- *
- * @todo Persona B: sustituir el botón nativo por ActionButtonComponent cuando esté disponible.
  */
 @Component({
   selector: 'dsb-alert-card',
   standalone: true,
-  imports: [DatePipe, RiskBadgeComponent],
+  imports: [DatePipe, RiskBadgeComponent, ActionButtonComponent],
   template: `
     <article class="alert-card">
       <header>
@@ -21,13 +20,13 @@ import { RiskBadgeComponent } from '../../atoms/risk-badge/risk-badge.atom';
       <p class="reason">{{ alert.reason }}</p>
       <footer>
         <time [attr.datetime]="alert.createdAt">{{ alert.createdAt | date: 'mediumDate' }}</time>
-        <button type="button" class="review-button" (click)="requestReview()">Revisar alerta</button>
+        <dsb-action-button label="Revisar alerta" variant="primary" (actionClick)="requestReview()" />
       </footer>
     </article>
   `,
   styles: `
     .alert-card { background: #fff; border: 1px solid #e2e8f0; border-radius: .8rem; box-shadow: 0 1px 2px #0f172a0d; padding: 1rem; }
-    header, footer { align-items: center; display: flex; gap: 1rem; justify-content: space-between; } h3 { font-size: 1rem; margin: 0; } p { color: #64748b; margin: .2rem 0 0; } .reason { color: #334155; margin: 1rem 0; } time { color: #64748b; font-size: .85rem; } .review-button { background: #1d4ed8; border: 0; border-radius: .4rem; color: white; cursor: pointer; font-weight: 600; padding: .5rem .75rem; }
+    header, footer { align-items: center; display: flex; gap: 1rem; justify-content: space-between; } h3 { font-size: 1rem; margin: 0; } p { color: #64748b; margin: .2rem 0 0; } .reason { color: #334155; margin: 1rem 0; } time { color: #64748b; font-size: .85rem; }
   `,
 })
 export class AlertCardComponent {
