@@ -14,6 +14,7 @@ export { ActionButtonComponent } from './lib/presentation/atoms/action-button/ac
 //Molecules
 export { NavLinkMolecule } from './lib/presentation/molecules/nav-link/nav-link.molecule';
 export { AlertCardComponent } from './lib/presentation/molecules/alert-card/alert-card.molecule';
+export { StudentFormFieldComponent } from './lib/presentation/molecules/student-form-field/student-form-field.molecule';
 
 //Organisms
 export { NavbarOrganism } from './lib/presentation/organisms/navbar/navbar.organism';
